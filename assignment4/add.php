@@ -13,27 +13,17 @@ include('connect.php');
 	</style>
 </head>
 <body>
-<h3><?php 
-if(isset($_GET['error'])){
-	$error = $_GET['error'];
-	if($error == 'name_error'){
-		echo 'Enter name';
-	}elseif($error == 'dir_error') {
-		echo 'Enter director';
-	}elseif($error == 'lead_error') {
-		echo 'Enter Lead Actor';
-	}elseif($error == 'coll_error') {
-		echo 'Enter Box office collection';
-	}
-}
-?></h3>
 <form method="POST" style="margin-left:250px;">
 	<table>
-		<tr><th colspan="5" style="text-align:center">Add Movie</th></tr>
-		<tr><td>Name</td><td><input type="text" name="moviename"></td></tr>
-		<tr><td>Director</td><td><input type="text" name="movieDirector"></td></tr>
-		<tr><td>Lead Actor</td><td><input type="text" name="LeadActor"></td></tr>
-		<tr><td>BO Collection</td><td><input type="text" name="BOCollection"></td></tr>
+		<tr><th colspan="5" style="text-align:center">Enter Result</th></tr>
+		<tr><td>Name</td><td><input type="text" name="name" required></td></tr>
+		<tr><td>Sub1</td><td><input type="number" name="sub1" min=0 max=100 required></td></tr>
+		<tr><td>Sub2</td><td><input type="number" name="sub2" required></td></tr>
+		<tr><td>Sub3</td><td><input type="number" name="sub3" required></td></tr>
+		<tr><td>Sub4</td><td><input type="number" name="sub4" required></td></tr>
+		<tr><td>Sub5</td><td><input type="number" name="sub5" required></td></tr>
+		<tr><td>Total</td><td><input type="number" name="total" required></td></tr>
+		<tr><td>Total Marks</td><td><input type="number" name="total_marks" required></td></tr>
 		<tr><td  colspan="5"><input type="submit" name="submit" value="submit"></td></tr>
 	</table>
 </form>
