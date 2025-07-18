@@ -1,6 +1,3 @@
-<?php
-include('connect.php');
-?>
 <html>
 <head>
 	<title>Assignment 4</title>
@@ -41,34 +38,3 @@ include('connect.php');
 </form>
 </body>
 </htmL>
-
-<?php 
-if(isset($_POST['submit'])){
-	$error = '';
-	$movie_name = trim($_POST['moviename']);
-	$movie_dir = trim($_POST['movieDirector']);
-	$lead = trim($_POST['LeadActor']);	
-	$collection = $_POST['BOCollection'];
-	
-	if(trim($_POST['moviename']) == NULL){
-		$error = "name_error";
-	}elseif(trim($_POST['movieDirector']) == NULL){
-		$error = "dir_error";
-	}elseif(trim($_POST['LeadActor']) == NULL){
-		$error = "lead_error";
-	}elseif(is_nan($collection)){
-		$error = "coll_error";
-	}
-	
-	if($error != null){
-		header('Location: ' . $_SESSION['PHP_SELF'].'?error='.$error);
-       	die();
-	}else{		
-		$statement = $connect->prepare("INSERT INTO movies(moviename,movieDirector,leadActor,BOCollection) values(?,?,?,?)");
-		$statement->execute([$movie_name, $movie_dir, $lead, $collection]);
-	
-		header('Location:index.php?msg=success');
-       	die();
-	}
-}
-?>
