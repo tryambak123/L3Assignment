@@ -17,7 +17,7 @@ include('connect.php');
 	<table>
 		<tr><th colspan="5" style="text-align:center">Enter Result</th></tr>
 		<tr><td>Name</td><td><input type="text" name="name" required></td></tr>
-		<tr><td>Sub1</td><td><input type="number" name="sub1" min=0 max=100 required></td></tr>
+		<tr><td>Sub1</td><td><input type="number" name="sub1" min="0" max="100" required></td></tr>
 		<tr><td>Sub2</td><td><input type="number" name="sub2" required></td></tr>
 		<tr><td>Sub3</td><td><input type="number" name="sub3" required></td></tr>
 		<tr><td>Sub4</td><td><input type="number" name="sub4" required></td></tr>
