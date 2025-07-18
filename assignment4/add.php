@@ -1,5 +1,10 @@
 <?php
 include('connect.php');
+$statement = $connect->query("SELECT * FROM class1");
+
+while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
+	echo '<pre>';print_r($row);
+}
 ?>
 <html>
 <head>
