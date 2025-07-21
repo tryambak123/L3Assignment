@@ -23,10 +23,10 @@ $statement = $connect->query("SELECT * FROM class1");
 <body>
 	<table>
 		<thead>
-		<tr>
-			<th colspan="8" style="text-align:center;">List of students</th>
-			<th colspan="2" style="text-align:right;"><a href="add.php">Add new Record</a></th>
-		</tr>
+		<th colspan="10">
+			<div style="float:left">List of students</div>
+			<div style="float:right"><a href="add.php">Add new Record</a></div>
+		</th>
 		<tr>
 			<th style="width:5%;">Sl</th>
 			<th style="width:25%;">Name</th>

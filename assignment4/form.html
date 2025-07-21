@@ -35,6 +35,28 @@
 <body>
 <form method="POST" style="margin-left:250px;">
 	<table>
+		<thead>
+		<tr>
+			<th colspan="10">
+				<div style="float:left">List of students</div>
+				<div style="float:right"><a href="add.php">Add new Record</a></div>
+			</th>
+		</tr>
+		<tr>
+			<th style="width:5%;">Sl</th>
+			<th style="width:25%;">Name</th>
+			<th style="width:10%;">Sub1</th>
+			<th style="width:10%;">Sub2</th>
+			<th style="width:10%;">Sub3</th>
+			<th style="width:10%;">Sub4</th>
+			<th style="width:10%;">Sub5</th>
+			<th style="width:10%;">Obtained</th>
+			<th style="width:10%;">Percentage</th>
+			<th style="width:10%;"></th>
+			</tr>
+		</thead>
+
+	<table>
 		<tr><th colspan="5" style="text-align:center">Enter Result</th></tr>
 		<tr><td>Name<span class="star">*</span></td><td><input type="text" name="name" required></td></tr>
 		<tr><td>Sub1<span class="star">*</span></td><td><input type="number" name="sub1" min="0" max="100" onkeyup="enforceMinMax(this)" onfocusout="calculateTotal(this)" required></td></tr>
