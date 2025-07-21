@@ -25,7 +25,7 @@ $statement = $connect->query("SELECT * FROM class1");
 		<thead>
 		<tr>
 			<th colspan="8" style="text-align:center;">List of students</th>
-			<th colspan="1" style="text-align:right;"><a href="add.php">Add new Record</a></th>
+			<th colspan="2" style="text-align:right;"><a href="add.php">Add new Record</a></th>
 		</tr>
 		<tr>
 			<th style="width:5%;">Sl</th>
