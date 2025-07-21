@@ -40,12 +40,12 @@ if(isset($_GET['error'])){
 		<input type="hidden" name="id" value ="<?php echo $res['id']?>">
 		<tr><td>Name<span class="star">*</span></td><td><input type="text" name="name" value="<?php echo $res['name']?>" required></td></tr>
 		<tr><td>Sub1<span class="star">*</span></td><td><input type="number" name="sub1" value="<?php echo $res['sub1']?>" min="0" max="100" onkeyup="enforceMinMax(this)" onfocusout="calculateTotal(this)" required></td></tr>
-		<tr><td>Sub2<span class="star">*</span></td><td><input type="number" name="sub2" <?php echo $res['sub2']?>" min="0" max="100" onkeyup="enforceMinMax(this)" onfocusout="calculateTotal(this)" required></td></tr>
-		<tr><td>Sub3<span class="star">*</span></td><td><input type="number" name="sub3" <?php echo $res['sub3']?>" min="0" max="100" onkeyup="enforceMinMax(this)" onfocusout="calculateTotal(this)" required></td></tr>
-		<tr><td>Sub4<span class="star">*</span></td><td><input type="number" name="sub4" <?php echo $res['sub4']?>" min="0" max="100" onkeyup="enforceMinMax(this)" onfocusout="calculateTotal(this)" required></td></tr>
-		<tr><td>Sub5<span class="star">*</span></td><td><input type="number" name="sub5" <?php echo $res['sub5']?>" min="0" max="100" onkeyup="enforceMinMax(this)" onfocusout="calculateTotal(this)" required></td></tr>
-		<tr><td>Total Obtained<span class="star">*</span></td><td><input type="number" name="total" <?php echo $res['total_obtained']?>" min="0" max="500" id="marks_sum" onkeyup="enforceMinMax(this)" required></td></tr>
-		<tr><td>Percentage<span class="star">*</span></td><td><input type="number" name="percent" <?php echo $res['percent']?>" min="0" max="500" id="percentage" required></td></tr>
+		<tr><td>Sub2<span class="star">*</span></td><td><input type="number" name="sub2" value="<?php echo $res['sub2']?>" min="0" max="100" onkeyup="enforceMinMax(this)" onfocusout="calculateTotal(this)" required></td></tr>
+		<tr><td>Sub3<span class="star">*</span></td><td><input type="number" name="sub3" value="<?php echo $res['sub3']?>" min="0" max="100" onkeyup="enforceMinMax(this)" onfocusout="calculateTotal(this)" required></td></tr>
+		<tr><td>Sub4<span class="star">*</span></td><td><input type="number" name="sub4" value="<?php echo $res['sub4']?>" min="0" max="100" onkeyup="enforceMinMax(this)" onfocusout="calculateTotal(this)" required></td></tr>
+		<tr><td>Sub5<span class="star">*</span></td><td><input type="number" name="sub5" value="<?php echo $res['sub5']?>" min="0" max="100" onkeyup="enforceMinMax(this)" onfocusout="calculateTotal(this)" required></td></tr>
+		<tr><td>Total Obtained<span class="star">*</span></td><td><input type="number" name="total" value="<?php echo $res['total_obtained']?>" min="0" max="500" id="marks_sum" onkeyup="enforceMinMax(this)" required></td></tr>
+		<tr><td>Percentage<span class="star">*</span></td><td><input type="number" name="percent" value="<?php echo $res['percent']?>" min="0" max="500" id="percentage" required></td></tr>
 		<tr><td>Total Marks</td><td><input type="number" name="total_marks" value = "500"></td></tr>
 		<tr><td  colspan="2"><input type="submit" name="submit" value="submit"></td></tr>
 	</table>
