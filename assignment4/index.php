@@ -23,8 +23,10 @@ $statement = $connect->query("SELECT * FROM class1");
 <body>
 	<table>
 		<thead>
-		<tr><th colspan="9" style="text-align:center;">List of students</th></tr>
-		<tr><th colspan="9" style="text-align:right;"><a href="add.php">Add new Record</a></th></tr>
+		<tr>
+			<th colspan="8" style="text-align:center;">List of students</th>
+			<th colspan="1" style="text-align:right;"><a href="add.php">Add new Record</a></th>
+		</tr>
 		<tr>
 			<th style="width:5%;">Sl</th>
 			<th style="width:25%;">Name</th>
@@ -35,6 +37,7 @@ $statement = $connect->query("SELECT * FROM class1");
 			<th style="width:10%;">Sub5</th>
 			<th style="width:10%;">Obtained</th>
 			<th style="width:10%;">Percentage</th>
+			<th style="width:10%;"></th>
 			</tr>
 		</thead>
 		<tbody><?php
@@ -49,7 +52,7 @@ $statement = $connect->query("SELECT * FROM class1");
 				<td style="width:15%;"><?php echo $row['sub4']?></td>
 				<td style="width:15%;"><?php echo $row['sub5']?></td>
 				<td style="width:15%;"><?php echo $row['total_obtained']?></td>
-				<td style="width:15%;"><?php echo $row['percentage']?></td>
+				<td style="width:15%;"><?php echo $row['percent']?></td>
 				<td style="width:10%;"><a href="update.php?id=<?php echo $row['id']?>">Edit</a></td>
 			</tr><?php
 		}?>

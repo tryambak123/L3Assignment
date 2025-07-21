@@ -46,7 +46,7 @@ $statement = $connect->query("SELECT * FROM class1");
 		<tr><td>Sub4<span class="star">*</span></td><td><input type="number" name="sub4" min="0" max="100" onkeyup="enforceMinMax(this)" onfocusout="calculateTotal(this)" required></td></tr>
 		<tr><td>Sub5<span class="star">*</span></td><td><input type="number" name="sub5" min="0" max="100" onkeyup="enforceMinMax(this)" onfocusout="calculateTotal(this)" required></td></tr>
 		<tr><td>Total Obtained<span class="star">*</span></td><td><input type="number" name="total" min="0" max="500" id="marks_sum" onkeyup="enforceMinMax(this)" required></td></tr>
-		<tr><td>Percentage<span class="star">*</span></td><td><input type="number" name="total" min="0" max="500" id="percentage" required></td></tr>
+		<tr><td>Percentage<span class="star">*</span></td><td><input type="number" name="percent" min="0" max="500" id="percentage" required></td></tr>
 		<tr><td>Total Marks</td><td><input type="number" name="total_marks" value = "500"></td></tr>
 		<tr><td  colspan="2"><input type="submit" name="submit" value="submit"></td></tr>
 	</table>
