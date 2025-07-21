@@ -74,6 +74,7 @@ if(isset($_POST['submit'])){
 		//header('Location: ' . $_SESSION['PHP_SELF'].'?error='.$error);
        	die('error');
 	}else{		
+		die('Here77');
 		$statement = $connect->prepare("INSERT INTO class1(name,sub1,sub2,sub3,sub4,sub5,total,total_marks) values(?,?,?,?,?,?,?,?,?,?)");
 		$statement->execute([$name, $sub1, $sub2, $sub3,$sub4, $sub5,$total,$total_marks]);
 	
