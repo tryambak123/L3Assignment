@@ -72,7 +72,7 @@ if(isset($_POST['submit'])){
        	die();
 	}else{		
 		$statement = $connect->prepare("UPDATE class1 SET name = ?, sub1 = ?, sub2 = ?, sub3 = ? sub2 = 4, sub3 = 5, total_obtained = ?, total_marks = ?, percent = ? WHERE id = ?");
-		$statement->execute([$name, $sub1, $sub2, $sub3, $sub4, $sub5,$$total_obtained,$total_marks,$percentage]);
+		$statement->execute([$name, $sub1, $sub2, $sub3, $sub4, $sub5,$$total_obtained,$total_marks,$percentage,$id]);
 	
 		header('Location:index.php?msg=upd_success');
        	die();
