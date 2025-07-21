@@ -1,10 +1,10 @@
 <?php
 include('connect.php');
 
-$movieid = $_GET['movieid'];
+$id = $_GET['id'];
 
-$statement = $connect->prepare("SELECT * from movies where movieid = ?");
-$statement->execute([$movieid]);
+$statement = $connect->prepare("SELECT * from class1 where id = ?");
+$statement->execute([$id]);
 $res = $statement->fetch(PDO::FETCH_ASSOC);
 ?>
 
@@ -36,13 +36,18 @@ if(isset($_GET['error'])){
 ?></h3>
 <form method="POST" style="margin-left:250px;">
 	<table>
-		<tr><td colspan="2" style="text-align:center">Add Movie</td></tr>
-		<input type="hidden" name="movieid" value ="<?php echo $res['movieid']?>">
-		<tr><td>Name</td><td><input type="text" name="moviename" value ="<?php echo $res['moviename']?>"></td></tr>
-		<tr><td>Director</td><td><input type="text" name="movieDirector" value ="<?php echo $res['movieDirector']?>"></td></tr>
-		<tr><td>Lead Actor</td><td><input type="text" name="LeadActor" value ="<?php echo $res['leadActor']?>"></td></tr>
-		<tr><td>BO Collection</td><td><input type="text" name="BOCollection" value ="<?php echo $res['BOCollection']?>"></td></tr>
-		<tr><td colspan="2" style="text-align:right"><input type="submit" name="submit" value="submit"></td></tr>
+		<tr><th colspan="5" style="text-align:center">Update Result</th></tr>
+		<input type="hidden" name="id" value ="<?php echo $res['id']?>">
+		<tr><td>Name<span class="star">*</span></td><td><input type="text" name="name" required></td></tr>
+		<tr><td>Sub1<span class="star">*</span></td><td><input type="number" name="sub1" min="0" max="100" onkeyup="enforceMinMax(this)" onfocusout="calculateTotal(this)" required></td></tr>
+		<tr><td>Sub2<span class="star">*</span></td><td><input type="number" name="sub2"  min="0" max="100" onkeyup="enforceMinMax(this)" onfocusout="calculateTotal(this)" required></td></tr>
+		<tr><td>Sub3<span class="star">*</span></td><td><input type="number" name="sub3" min="0" max="100" onkeyup="enforceMinMax(this)" onfocusout="calculateTotal(this)" required></td></tr>
+		<tr><td>Sub4<span class="star">*</span></td><td><input type="number" name="sub4" min="0" max="100" onkeyup="enforceMinMax(this)" onfocusout="calculateTotal(this)" required></td></tr>
+		<tr><td>Sub5<span class="star">*</span></td><td><input type="number" name="sub5" min="0" max="100" onkeyup="enforceMinMax(this)" onfocusout="calculateTotal(this)" required></td></tr>
+		<tr><td>Total Obtained<span class="star">*</span></td><td><input type="number" name="total" min="0" max="500" id="marks_sum" onkeyup="enforceMinMax(this)" required></td></tr>
+		<tr><td>Percentage<span class="star">*</span></td><td><input type="number" name="total" min="0" max="500" id="percentage" required></td></tr>
+		<tr><td>Total Marks</td><td><input type="number" name="total_marks" value = "500"></td></tr>
+		<tr><td  colspan="2"><input type="submit" name="submit" value="submit"></td></tr>
 	</table>
 </form>
 </body>
@@ -51,28 +56,23 @@ if(isset($_GET['error'])){
 <?php 
 if(isset($_POST['submit'])){
 	$error = '';
-	$movie_name = trim($_POST['moviename']);
-	$movie_dir = trim($_POST['movieDirector']);
-	$lead = trim($_POST['LeadActor']);	
-	$collection = $_POST['BOCollection'];
-	$movieid = $_POST['movieid'];
-	
-	if(trim($_POST['moviename']) == NULL){
-		$error = "name_error";
-	}elseif(trim($_POST['movieDirector']) == NULL){
-		$error = "dir_error";
-	}elseif(trim($_POST['LeadActor']) == NULL){
-		$error = "lead_error";
-	}elseif(is_nan($collection)){
-		$error = "coll_error";
-	}
+	$id = $_POST['id'];
+	$name = trim($_POST['name']);
+	$sub1 = trim($_POST['sub1']);
+	$sub2 = trim($_POST['sub2']);
+	$sub3 = trim($_POST['sub3']);
+	$sub4 = trim($_POST['sub4']);
+	$sub5 = trim($_POST['sub5']);
+	$total_marks = trim($_POST['total_marks']);
+	$total_obtained = $sub1 + $sub2 + $sub3 + $sub4 + $sub5;
+	$percentage = $total_obtained/$total_marks *100;
 	
 	if($error != null){
 		header('Location: ' . $_SESSION['PHP_SELF'].'?error='.$error);
        	die();
 	}else{		
-		$statement = $connect->prepare("UPDATE movies SET moviename = ?, movieDirector = ?, leadActor = ?, BOCollection = ? WHERE movieid = ?");
-		$statement->execute([$movie_name, $movie_dir, $lead, $collection, $movieid]);
+		$statement = $connect->prepare("UPDATE class1 SET name = ?, sub1 = ?, sub2 = ?, sub3 = ? sub2 = 4, sub3 = 5, total_obtained = ?, total_marks = ?, percent = ? WHERE id = ?");
+		$statement->execute([$name, $sub1, $sub2, $sub3, $sub4, $sub5,$$total_obtained,$total_marks,$percentage]);
 	
 		header('Location:index.php?msg=upd_success');
        	die();

@@ -36,11 +36,6 @@ $statement = $connect->query("SELECT * FROM class1");
 	</script>
 </head>
 <body>
-<h3><?php 
-if(isset($_GET['msg'])){
-	echo "Record added Successfully";
-}
-?></h3>
 <form method="POST" style="margin-left:250px;">
 	<table>
 		<tr><th colspan="5" style="text-align:center">Enter Result</th></tr>
@@ -79,7 +74,7 @@ if(isset($_POST['submit'])){
 			$statement = $connect->prepare("INSERT INTO class1(name,percent,sub1,sub2,sub3,sub4,sub5,total_obtained,total_marks) values(?,?,?,?,?,?,?,?,?)");
 			$statement->execute([$name,$percentage,$sub1,$sub2,$sub3,$sub4,$sub5,$total_obtained,$total_marks]);
 		
-			header('Location:add.php?msg=success');
+			header('Location:index.php?msg=add_success');
 			die();
 		}catch(Exception $e){
 			die('Something went wrong:'.$e->getMessage());
