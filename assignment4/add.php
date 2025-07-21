@@ -70,7 +70,7 @@ if(isset($_POST['submit'])){
 	$sub5 = trim($_POST['sub5']);
 	$total_marks = trim($_POST['total_marks']);
 	$total_obtained = $sub1 + $sub2 + $sub3 + $sub4 + $sub5;
-	$percentage = $total/$total_marks *100;
+	$percentage = $total_obtained/$total_marks *100;
 	if($error != null){
 		//header('Location: ' . $_SESSION['PHP_SELF'].'?error='.$error);
        	die('error');
