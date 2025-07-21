@@ -1,10 +1,6 @@
 <?php
 include('connect.php');
 $statement = $connect->query("SELECT * FROM class1");
-
-while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
-	echo '<pre>';print_r($row);
-}
 ?>
 <html>
 <head>
@@ -31,7 +27,9 @@ while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
 	function calculateTotal(el){
 		total = total + Number(el.value);
 		marks_sum = document.getElementById("marks_sum");
+		alert(marks_sum.value);
 		marks_sum.value = total;
+		
 	}
 	</script>
 </head>
