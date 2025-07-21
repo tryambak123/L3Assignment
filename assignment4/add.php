@@ -75,7 +75,7 @@ if(isset($_POST['submit'])){
        	die('error');
 	}else{		
 		try{
-			$statement = $connect->prepare("INSERT INTO class1(name,sub1,sub2,sub3,sub4,sub5,total,total_marks) values(?,?,?,?,?,?,?,?,?,?)");
+			$statement = $connect->prepare("INSERT INTO class1(name,sub1,sub2,sub3,sub4,sub5,total,total_marks) values(?,?,?,?,?,?,?,?)");
 			$statement->execute([$name, $sub1, $sub2, $sub3,$sub4, $sub5,$total,$total_marks]);
 		
 			header('Location:add.php?msg=success');
