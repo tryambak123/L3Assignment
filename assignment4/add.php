@@ -11,6 +11,7 @@ $statement = $connect->query("SELECT * FROM class1");
 	  border-collapse: collapse;
 	  width:50%;
 	}
+	.star{color:red;}
 	</style>
 	<script>
 	function enforceMinMax(el) {
@@ -24,12 +25,13 @@ $statement = $connect->query("SELECT * FROM class1");
 	  }
 	}
 	
-	function calculateTotal(el){
+	function calculateTotal(el,total_marks=500){
 		total = total + Number(el.value);
 		marks_sum = document.getElementById("marks_sum");
-		alert(marks_sum.value);
 		marks_sum.value = total;
-		
+		percentage = document.getElementById("percentage");
+		percent = total/total_marks*100;
+		percentage.value = percent;
 	}
 	</script>
 </head>
@@ -42,14 +44,15 @@ if(isset($_GET['msg'])){
 <form method="POST" style="margin-left:250px;">
 	<table>
 		<tr><th colspan="5" style="text-align:center">Enter Result</th></tr>
-		<tr><td>Name</td><td><input type="text" name="name" required></td></tr>
-		<tr><td>Sub1</td><td><input type="number" name="sub1" min="0" max="100" onkeyup="enforceMinMax(this)" onfocusout="calculateTotal(this)" required></td></tr>
-		<tr><td>Sub2</td><td><input type="number" name="sub2"  min="0" max="100" onkeyup="enforceMinMax(this)" onfocusout="calculateTotal(this)" required></td></tr>
-		<tr><td>Sub3</td><td><input type="number" name="sub3" min="0" max="100" onkeyup="enforceMinMax(this)" onfocusout="calculateTotal(this)" required></td></tr>
-		<tr><td>Sub4</td><td><input type="number" name="sub4" min="0" max="100" onkeyup="enforceMinMax(this)" onfocusout="calculateTotal(this)" required></td></tr>
-		<tr><td>Sub5</td><td><input type="number" name="sub5" min="0" max="100" onkeyup="enforceMinMax(this)" onfocusout="calculateTotal(this)" required></td></tr>
-		<tr><td>Total</td><td><input type="number" name="total" min="0" max="500" id="marks_sum" onkeyup="enforceMinMax(this)" required></td></tr>
-		<tr><td>Total Marks</td><td><input type="number" name="total_marks" value = "500" readonly></td></tr>
+		<tr><td>Name<span class="star">*</span></td><td><input type="text" name="name" required></td></tr>
+		<tr><td>Sub1<span class="star">*</span></td><td><input type="number" name="sub1" min="0" max="100" onkeyup="enforceMinMax(this)" onfocusout="calculateTotal(this)" required></td></tr>
+		<tr><td>Sub2<span class="star">*</span></td><td><input type="number" name="sub2"  min="0" max="100" onkeyup="enforceMinMax(this)" onfocusout="calculateTotal(this)" required></td></tr>
+		<tr><td>Sub3<span class="star">*</span></td><td><input type="number" name="sub3" min="0" max="100" onkeyup="enforceMinMax(this)" onfocusout="calculateTotal(this)" required></td></tr>
+		<tr><td>Sub4<span class="star">*</span></td><td><input type="number" name="sub4" min="0" max="100" onkeyup="enforceMinMax(this)" onfocusout="calculateTotal(this)" required></td></tr>
+		<tr><td>Sub5<span class="star">*</span></td><td><input type="number" name="sub5" min="0" max="100" onkeyup="enforceMinMax(this)" onfocusout="calculateTotal(this)" required></td></tr>
+		<tr><td>Total Obtained<span class="star">*</span></td><td><input type="number" name="total" min="0" max="500" id="marks_sum" onkeyup="enforceMinMax(this)" required></td></tr>
+		<tr><td>Percentage<span class="star">*</span></td><td><input type="number" name="total" min="0" max="500" id="percentage" required></td></tr>
+		<tr><td>Total Marks</td><td><input type="number" name="total_marks" value = "500"></td></tr>
 		<tr><td  colspan="2"><input type="submit" name="submit" value="submit"></td></tr>
 	</table>
 </form>
@@ -65,17 +68,16 @@ if(isset($_POST['submit'])){
 	$sub3 = trim($_POST['sub3']);
 	$sub4 = trim($_POST['sub4']);
 	$sub5 = trim($_POST['sub5']);
-	$total = trim($_POST['total']);
 	$total_marks = trim($_POST['total_marks']);
-	$total = $sub1 + $sub2 + $sub3 + $sub4 + $sub5;
+	$total_obtained = $sub1 + $sub2 + $sub3 + $sub4 + $sub5;
 	$percentage = $total/$total_marks *100;
 	if($error != null){
 		//header('Location: ' . $_SESSION['PHP_SELF'].'?error='.$error);
        	die('error');
 	}else{		
 		try{
-			$statement = $connect->prepare("INSERT INTO class1(name,percent,sub1,sub2,sub3,sub4,sub5,total,total_marks) values(?,?,?,?,?,?,?,?,?)");
-			$statement->execute([$name,$percentage,$sub1,$sub2,$sub3,$sub4,$sub5,$total,$total_marks]);
+			$statement = $connect->prepare("INSERT INTO class1(name,percent,sub1,sub2,sub3,sub4,sub5,total_obtained,total_marks) values(?,?,?,?,?,?,?,?,?)");
+			$statement->execute([$name,$percentage,$sub1,$sub2,$sub3,$sub4,$sub5,$total_obtained,$total_marks]);
 		
 			header('Location:add.php?msg=success');
 			die();
