@@ -69,14 +69,15 @@ if(isset($_POST['submit'])){
 	$sub5 = trim($_POST['sub5']);
 	$total = trim($_POST['total']);
 	$total_marks = trim($_POST['total_marks']);
-		
+	$total = $sub1 + $sub2 + $sub3 + $sub4 + $sub5;
+	$percentage = $total/$total_marks *100;
 	if($error != null){
 		//header('Location: ' . $_SESSION['PHP_SELF'].'?error='.$error);
        	die('error');
 	}else{		
 		try{
-			$statement = $connect->prepare("INSERT INTO class1(name,sub1,sub2,sub3,sub4,sub5,total,total_marks) values(?,?,?,?,?,?,?,?)");
-			$statement->execute([$name, $sub1, $sub2, $sub3,$sub4, $sub5,$total,$total_marks]);
+			$statement = $connect->prepare("INSERT INTO class1(name,percent,sub1,sub2,sub3,sub4,sub5,total,total_marks) values(?,?,?,?,?,?,?,?,?)");
+			$statement->execute([$name,$percentage,$sub1,$sub2,$sub3,$sub4,$sub5,$total,$total_marks]);
 		
 			header('Location:add.php?msg=success');
 			die();
