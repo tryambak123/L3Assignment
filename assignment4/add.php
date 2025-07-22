@@ -57,7 +57,7 @@ include('connect.php');?>
 		<tr><td>Total Marks</td><td><input type="number" name="total_marks" value = "500"></td></tr>
 		<tr><td colspan="2">
 				<div style="float:left"><input type="submit" name="submit" value="submit"></div>
-				<div style="float:left"><a href="index.php">Cancel</a></div>
+				<div style="float:right"><a href="index.php">Cancel</a></div>
 			</td>
 		</tr>
 	</table>

@@ -26,9 +26,9 @@ $res = $statement->fetch(PDO::FETCH_ASSOC); // Fetch the record as an associativ
 <body>
 
 <form method="POST" style="margin-left:250px;">
+	<input type="hidden" name="id" value ="<?php echo $res['id']?>">		
 	<table>
 		<tr><th colspan="5" style="text-align:center">Update Result</th></tr>
-		<input type="hidden" name="id" value ="<?php echo $res['id']?>">
 		<tr><td>Name<span class="star">*</span></td><td><input type="text" name="name" value="<?php echo $res['name']?>" required></td></tr>
 		<tr><td>Sub1<span class="star">*</span></td><td><input type="number" name="sub1" value="<?php echo $res['sub1']?>" min="0" max="100" onkeyup="enforceMinMax(this)" onfocusout="calculateTotal(this)" required></td></tr>
 		<tr><td>Sub2<span class="star">*</span></td><td><input type="number" name="sub2" value="<?php echo $res['sub2']?>" min="0" max="100" onkeyup="enforceMinMax(this)" onfocusout="calculateTotal(this)" required></td></tr>
@@ -40,7 +40,7 @@ $res = $statement->fetch(PDO::FETCH_ASSOC); // Fetch the record as an associativ
 		<tr><td>Total Marks</td><td><input type="number" name="total_marks" value = "500"></td></tr>
 		<tr><td colspan="2">
 				<div style="float:left"><input type="submit" name="submit" value="submit"></div>
-				<div style="float:left"><a href="index.php">Cancel</a></div>
+				<div style="float:right"><a href="index.php">Cancel</a></div>
 			</td>
 		</tr>
 	</table>
