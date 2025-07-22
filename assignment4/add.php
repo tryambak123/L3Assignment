@@ -45,7 +45,7 @@ include('connect.php');?>
 <body>
 <form method="POST" style="margin-left:250px;">
 	<table>
-		<tr><th colspan="5" style="text-align:center">Enter Result</th></tr>
+		<tr><th colspan="2" style="text-align:center">Enter Result</th></tr>
 		<tr><td>Name<span class="star">*</span></td><td><input type="text" name="name" required></td></tr>
 		<tr><td>Sub1<span class="star">*</span></td><td><input type="number" name="sub1" min="0" max="100" onkeyup="enforceMinMax(this)" onfocusout="calculateTotal(this)" required></td></tr>
 		<tr><td>Sub2<span class="star">*</span></td><td><input type="number" name="sub2"  min="0" max="100" onkeyup="enforceMinMax(this)" onfocusout="calculateTotal(this)" required></td></tr>
@@ -55,7 +55,11 @@ include('connect.php');?>
 		<tr><td>Total Obtained<span class="star">*</span></td><td><input type="number" name="total" min="0" max="500" id="marks_sum" onkeyup="enforceMinMax(this)" required></td></tr>
 		<tr><td>Percentage<span class="star">*</span></td><td><input type="number" name="percent" min="0" max="500" id="percentage" required></td></tr>
 		<tr><td>Total Marks</td><td><input type="number" name="total_marks" value = "500"></td></tr>
-		<tr><td  colspan="2"><input type="submit" name="submit" value="submit"></td></tr>
+		<tr><td colspan="2">
+				<div style="float:left"><input type="submit" name="submit" value="submit"></div>
+				<div style="float:left"><a href="index.php">Cancel</a></div>
+			</td>
+		</tr>
 	</table>
 </form>
 </body>

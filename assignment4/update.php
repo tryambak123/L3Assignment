@@ -38,7 +38,11 @@ $res = $statement->fetch(PDO::FETCH_ASSOC); // Fetch the record as an associativ
 		<tr><td>Total Obtained<span class="star">*</span></td><td><input type="number" name="total" value="<?php echo $res['total_obtained']?>" min="0" max="500" id="marks_sum" onkeyup="enforceMinMax(this)" required></td></tr>
 		<tr><td>Percentage<span class="star">*</span></td><td><input type="number" name="percent" value="<?php echo $res['percent']?>" min="0" max="500" id="percentage" required></td></tr>
 		<tr><td>Total Marks</td><td><input type="number" name="total_marks" value = "500"></td></tr>
-		<tr><td  colspan="2"><input type="submit" name="submit" value="submit"></td></tr>
+		<tr><td colspan="2">
+				<div style="float:left"><input type="submit" name="submit" value="submit"></div>
+				<div style="float:left"><a href="index.php">Cancel</a></div>
+			</td>
+		</tr>
 	</table>
 </form>
 </body>
