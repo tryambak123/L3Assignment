@@ -1,11 +1,15 @@
 <?php
-include('connect.php');
+// Start of the PHP script
+// This script handles the update functionality for the class1 table in the database
+include('connect.php'); // Include the database connection file
 
-$id = $_GET['id'];
+$id = $_GET['id']; // Get the ID of the record to be updated from the URL
 
+// Prepare and execute a query to fetch the record with the given ID
 $statement = $connect->prepare("SELECT * from class1 where id = ?");
 $statement->execute([$id]);
-$res = $statement->fetch(PDO::FETCH_ASSOC);
+$res = $statement->fetch(PDO::FETCH_ASSOC); // Fetch the record as an associative array
+
 ?>
 
 <html>
@@ -20,20 +24,7 @@ $res = $statement->fetch(PDO::FETCH_ASSOC);
 	</style>
 </head>
 <body>
-<h3><?php 
-if(isset($_GET['error'])){
-	$error = $_GET['error'];
-	if($error == 'name_error'){
-		echo 'Enter name';
-	}elseif($error == 'dir_error') {
-		echo 'Enter director';
-	}elseif($error == 'lead_error') {
-		echo 'Enter Lead Actor';
-	}elseif($error == 'coll_error') {
-		echo 'Enter Box office collection';
-	}
-}
-?></h3>
+
 <form method="POST" style="margin-left:250px;">
 	<table>
 		<tr><th colspan="5" style="text-align:center">Update Result</th></tr>
@@ -54,32 +45,35 @@ if(isset($_GET['error'])){
 </htmL>
 
 <?php 
-if(isset($_POST['submit'])){
-	$error = '';
-	$id = $_POST['id'];
-	$name = trim($_POST['name']);
-	$sub1 = trim($_POST['sub1']);
-	$sub2 = trim($_POST['sub2']);
-	$sub3 = trim($_POST['sub3']);
-	$sub4 = trim($_POST['sub4']);
-	$sub5 = trim($_POST['sub5']);
-	$total_marks = trim($_POST['total_marks']);
+// Check if the form has been submitted
+if (isset($_POST['submit'])) {
+	$error = ''; // Initialize an error variable
+	$id = $_POST['id']; // Get the ID of the record to be updated
+	$name = trim($_POST['name']); // Get and trim the name input
+	$sub1 = trim($_POST['sub1']); // Get and trim the marks for subject 1
+	$sub2 = trim($_POST['sub2']); // Get and trim the marks for subject 2
+	$sub3 = trim($_POST['sub3']); // Get and trim the marks for subject 3
+	$sub4 = trim($_POST['sub4']); // Get and trim the marks for subject 4
+	$sub5 = trim($_POST['sub5']); // Get and trim the marks for subject 5
+	$total_marks = trim($_POST['total_marks']); // Get and trim the total marks input
+
+	// Calculate the total marks obtained and percentage
 	$total_obtained = $sub1 + $sub2 + $sub3 + $sub4 + $sub5;
-	$percentage = $total_obtained/$total_marks *100;
-	
-	if($error != null){
-		header('Location: ' . $_SESSION['PHP_SELF'].'?error='.$error);
-       	die();
-	}else{	
-		try{
-			$statement = $connect->prepare("UPDATE class1 SET name = ?, sub1 = ?, sub2 = ?, sub3 = ?, sub4 = ?, sub5 = ?, total_obtained = ?, total_marks = ?, percent = ? WHERE id = ?");
-			$statement->execute([$name, $sub1, $sub2, $sub3, $sub4, $sub5,$total_obtained,$total_marks,$percentage,$id]);
+	$percentage = $total_obtained / $total_marks * 100;
+
+	try {
+		// Prepare an SQL statement to update the record in the database
+		$statement = $connect->prepare("UPDATE class1 SET name = ?, sub1 = ?, sub2 = ?, sub3 = ?, sub4 = ?, sub5 = ?, total_obtained = ?, total_marks = ?, percent = ? WHERE id = ?");
 		
-			header('Location:index.php?msg=upd_success');
-			die();
-		}catch(Exception $e){
-			die('Something went wrong:'.$e->getMessage());
-		}
+		// Execute the statement with the provided values
+		$statement->execute([$name, $sub1, $sub2, $sub3, $sub4, $sub5, $total_obtained, $total_marks, $percentage, $id]);
+		
+		// Redirect to the index page with a success message
+		header('Location:index.php?msg=upd_success');
+		die();
+	} catch (Exception $e) {
+		// Handle any exceptions and display an error message
+		die('Something went wrong:' . $e->getMessage());
 	}
 }
 ?>
